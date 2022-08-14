@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pikube-swag
+  namespace: hip
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      application: pikube-swag
+  template:
+    metadata:
+      labels:
+        application: pikube-swag
+    spec:
+      serviceAccountName: hip-operator
+      containers:
+        - name: pikube-swag
+          image: silvertoken/pikube-swag:0.0.1
